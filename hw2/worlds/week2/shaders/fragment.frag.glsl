@@ -585,7 +585,7 @@ vec3 calc_phong_lighting(Raytrace_Result res, Material mat, vec3 bg_color, vec3 
         vec3 L = (d_light[i].dir);
 
         float dist = RAYTRACE_OUTOFBOUNDS;
-        Ray ray = Ray(res.point + (N * RT_EPSILON), L);
+        Ray ray = Ray(res.point + (eye_dir * RT_EPSILON), L);
         Raytrace_Result rt_res;
 
         // raytrace to spheres
