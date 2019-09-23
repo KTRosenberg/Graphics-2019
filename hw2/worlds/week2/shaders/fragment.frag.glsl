@@ -252,11 +252,11 @@ void init(void)
     d_light_count = 2;
     d_light[0] = Dir_Light(
         vec3(.5,.5,1.0),
-        normalize(vec3(1.,1.,1.))
+        normalize(vec3(1.,1. + sin01(uTime),1.))
     );
     d_light[1] = Dir_Light(
         vec3(.2,.1,.1),
-        normalize(vec3(-1.,-1.,-1.))
+        normalize(vec3(0.,1.,0.))
     );
 
     ambient = vec4(0.045, 0.02, 0.01, 1.0);
@@ -268,8 +268,8 @@ void init(void)
 
     sphere_count = 3;
     spheres[0] = Sphere(
-        vec3(-1.0, 0.4, -4.0 + smv),
-        0.5 + abs(noise(vec3(vPos.xy * sin(uTime), 0.0))), // NOTE: this doesn't affect the reflections -- would need to do transformation based on raytraced point
+        vec3(0.0 - sin(uTime), 1.5, 5.0 * sin(uTime)),
+        0.5 ,//+ abs(noise(vec3(vPos.xy * sin(uTime), 0.0))), // NOTE: this doesn't affect the reflections -- would need to do transformation based on raytraced point
         Material(
            vec3(0.,.1,.1),
            vec3(1.0, 0.3, 0.3),
